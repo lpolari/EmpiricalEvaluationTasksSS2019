@@ -1,8 +1,3 @@
-## "Empirical Evaluation in Informatics" - Task 2
-## Lars Parmakerli
-## Julius Brose
-
-
 # Task 2-1
 
 myread.cvsdata <- function(file_str) {
@@ -13,21 +8,19 @@ myread.cvsdata <- function(file_str) {
 	return (df)
 }
 
-
 # Task 2-2
 
-developer.count <- function(df) {
-	return (length(levels(df$developerf)))
+developer.count <- function(data) {
+	return (length(levels(data$developerf)))
 }
 
-developer.busy <- function(df) {
-	top5 <- head(sort(table(df$developerf), decreasing=T), 5)
-	#return (nrow(df[df$developer %in% names(top5),]))
+developer.busy <- function(data) {
+	top5 <- head(sort(table(data$developerf), decreasing=T), 5)
 	return (top5)
 }
 
-developer.changedfiles <- function(df, developer) {
-	files_per_developer <- tapply(df$filef, df$developer, function(x) length(unique(x)) )
+developer.changedfiles <- function(data) {
+	files_per_developer <- tapply(data$filef, data$developer, function(x) length(unique(x)) )
 	files_all           <- length(levels(df$filef))
-	return (100 * files_per_developer[developer] / files_all)
+	return (100 * files_per_developer / files_all)
 }
